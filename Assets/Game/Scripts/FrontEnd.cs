@@ -121,15 +121,32 @@ public class FrontEnd : MonoBehaviour
     /// <summary>
     /// Maps visible menu index to fixed texture slot (0–5). Without saves, index 4 is Quit (slot 5).
     /// </summary>
+    /// <remarks>
+    /// Two numberings coexist here. The menu index is the POSITION in the list, and drives
+    /// buttonY and the highlight; the slot is the IDENTITY of the entry, and drives
+    /// GetMenuItemTexture. This method is the only translation between them.
+    ///     slot 0  Introduction        slot 3  Achievements
+    ///     slot 1  Create Character    slot 4  Journey Onward
+    ///     slot 2  Acknowledgements    slot 5  Return to Windows
+    /// With saves present the order is [4, 0, 1, 2, 3, 5], putting Journey Onward first: for
+    /// anyone past their first session it is the entry they want every single time, and having to
+    /// walk down to fifth place to reach it is friction on the most common path.
+    /// Without saves the mapping is unchanged - Journey Onward is not in the menu at all.
+    /// Out of range indices fall back to slot 5 rather than overrunning buttons[2 * slot].
+    /// </remarks>
     private int MenuItemToSlot(int menuItemIndex)
     {
-        if (hasSaves)
+        if (!hasSaves)
         {
-            return menuItemIndex;
+            return menuItemIndex < 4 ? menuItemIndex : 5;
         }
-        if (menuItemIndex < 4)
+        if (menuItemIndex == 0)
         {
-            return menuItemIndex;
+            return 4;
+        }
+        if (menuItemIndex < 5)
+        {
+            return menuItemIndex - 1;
         }
         return 5;
     }
@@ -250,6 +267,27 @@ public class FrontEnd : MonoBehaviour
                 MusicPlayer.Instance.SwitchTrack(titleMusicTrack, true);
             }
             FadeIn();
+
+            // Land the selection, and the cursor with it, on the entry the player almost
+            // certainly wants: Journey Onward when there are saves, Create Character otherwise.
+            // Both prerequisites are already met above - CreateDropShadows() has built buttons[],
+            // which GetMenuItemRectGui needs, and CheckSavesExist() has computed hasSaves.
+            // menuIndex is set as well as the cursor, not just the cursor: otherwise the pointer
+            // would sit on one entry while the highlight stayed on another until the hover
+            // handler resynced them a frame later, and a keyboard player would get no benefit at
+            // all. This deliberately fires only on the first pass through Start - coming back
+            // from Introduction, Credits or Achievements also reaches Menu, but by then the
+            // player has a hand on the mouse and moving it for them would be rude.
+            menuIndex = hasSaves ? 0 : 1;
+            Mouse startMouse = Mouse.current;
+            if (startMouse != null)
+            {
+                // GetMenuItemRectGui is GUI space, origin top left; the input system wants bottom
+                // left, so the y coordinate is flipped.
+                Rect startRect = GetMenuItemRectGui(menuIndex, Screen.width / 320.0f, Screen.height / 200.0f);
+                startMouse.WarpCursorPosition(new Vector2(startRect.x + startRect.width * 0.5f, Screen.height - (startRect.y + startRect.height * 0.5f)));
+            }
+
             state = EState.Menu;
             break;
         case EState.Menu:
@@ -417,7 +455,10 @@ public class FrontEnd : MonoBehaviour
         {
             Utils.PlayClip2d(makeSelection);
         }
-        switch (menuIndex)
+        // Dispatch on the SLOT, not on the position. The cases below were already written in
+        // terms of slots, so with the menu reordered by MenuItemToSlot this is the only line that
+        // has to change for label and action to stay in step.
+        switch (MenuItemToSlot(menuIndex))
         {
         case 0:
             state = EState.Introduction;
@@ -457,6 +498,8 @@ public class FrontEnd : MonoBehaviour
             }
             else
             {
+                // Unreachable now that slot 4 is only offered when saves exist, but kept as a
+                // safety net for an out of range index.
                 QuitApplication();
             }
             break;
