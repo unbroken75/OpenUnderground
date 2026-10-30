@@ -2,6 +2,8 @@
 
 ## Current release
 
+- The interface now follows the size of the screen: it keeps its size from 1366x768 to 1920x1080, grows evenly on larger screens with the edges of its pixel art softened, and shrinks as a whole on smaller ones such as a Steam Deck, where panels used to overlap; below 1280x720 a message says so once. Conversations fit a 768-line screen, and the list of saves on the title screen is wider and cuts long names short.
+
 - The map fills in with what your light shows as you go, as in the original: in the dark only the spot you stand on, with a torch a narrow trail, a wider one with Night Vision or Daylight, and nothing at all in the Void. Each new tile on the map pays experience that grows with the depth: the first level explored whole pays about a sixth of what it did, from the fourth down one and a half to almost three times as much, a little more than before over the whole dungeon, and the Void nothing.
 
 - A secret door not yet found no longer shows on the map as a gap in the wall.

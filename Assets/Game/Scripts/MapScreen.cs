@@ -998,23 +998,23 @@ public class MapScreen : MonoBehaviour
                     if (quillScreenX < screenCenterX)
                     {
                         // Quill is left of center, position keyboard to the right of quill
-                        keyboardX = quillScreenX + 50; // Offset to the right of quill
+                        keyboardX = quillScreenX + UiScale.S(50); // Offset to the right of quill
                     }
                     else
                     {
                         // Quill is right of center, position keyboard to the left of quill
-                        keyboardX = quillScreenX - panelWidth - 50; // Offset to the left of quill
+                        keyboardX = quillScreenX - UiScale.S(panelWidth + 50); // Offset to the left of quill (the keyboard is at the interface scale)
                     }
                     
                     if (quillScreenY < screenCenterY)
                     {
                         // Quill is above center, position keyboard below quill
-                        keyboardY = quillScreenY + 50; // Offset below quill
+                        keyboardY = quillScreenY + UiScale.S(50); // Offset below quill
                     }
                     else
                     {
                         // Quill is below center, position keyboard above quill
-                        keyboardY = quillScreenY - panelHeight - 50; // Offset above quill
+                        keyboardY = quillScreenY - UiScale.S(panelHeight + 50); // Offset above quill
                     }
                     
                     KeyboardGUI.sKeyboard.Show(currentNote.note, (result) => {
