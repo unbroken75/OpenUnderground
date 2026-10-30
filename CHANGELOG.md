@@ -2,6 +2,8 @@
 
 ## Current release
 
+- The interface now follows the size of the screen: it keeps its size from 1366x768 to 1920x1080, grows evenly on larger screens with the edges of its pixel art softened, and shrinks as a whole on smaller ones such as a Steam Deck, where panels used to overlap; below 1280x720 a message says so once. Conversations fit a 768-line screen, and the list of saves on the title screen is wider and cuts long names short.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
