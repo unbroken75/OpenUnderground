@@ -521,7 +521,7 @@ public class Credits : MonoBehaviour
     private void OnGUI()
     {
         GUI.depth = (int)EGUIDepth.Credits;
-        GUI.DrawTexture(Screen.safeArea, background);
+        FrontEnd.DrawPageBackground(background);
         if (copy == null)
         {
             return;

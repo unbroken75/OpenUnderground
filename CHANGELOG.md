@@ -8,6 +8,8 @@
 
 - Three more of the remake's additions can be turned off in the game menu's GAMEPLAY section, for the original's way: the automatic Search, Traps and Track reports, sprinting with its stamina gauge, and the items hidden in piles of debris, which are then only scenery. The music now pauses five to ten seconds between exploring tracks unless set otherwise, and the pause can be set up to five minutes. Saves can be deleted from the game menu's Save tab, and Journey Onward on the title screen opens the same list of saves.
 
+- The rock behind Achievements and the acknowledgements is no longer squashed, and stands in the same place on every page of the title screen.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
