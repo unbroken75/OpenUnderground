@@ -6,6 +6,8 @@
 
 - The save and options panel is now a full-screen game menu with four tabs, Save, Load, Options and Controls, its options grouped in sections and applied as soon as they change, with Reset, Reset all and Undo changes in place of Apply All. Settings that could only be changed in the registry now have a row - autosave, the music over the map, the silence between tracks, the scale of the interface above 1080p, and the remake's gameplay additions, which the Classic rules button turns back to the original's way. The title screen's Setup opens the same menu, and the music tracks are a page of it, now reachable in a game too.
 
+- Three more of the remake's additions can be turned off in the game menu's GAMEPLAY section, for the original's way: the automatic Search, Traps and Track reports, sprinting with its stamina gauge, and the items hidden in piles of debris, which are then only scenery. The music now pauses five to ten seconds between exploring tracks unless set otherwise, and the pause can be set up to five minutes. Saves can be deleted from the game menu's Save tab, and Journey Onward on the title screen opens the same list of saves.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.

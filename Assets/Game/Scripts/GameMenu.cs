@@ -229,7 +229,7 @@ public sealed class GameMenu
     private readonly HashSet<string> labelsWarned = new HashSet<string>();
 #endif
 
-    /// <param name="tabs">The tabs shown, in order: all four in a game, OPTIONS and CONTROLS from the title.</param>
+    /// <param name="tabs">The tabs shown, in order: all four in a game, OPTIONS and CONTROLS on Setup, LOAD alone on Journey Onward.</param>
     /// <param name="dimBehind">Darken what is behind the panel: the paused game.</param>
     public GameMenu(GameMenuSkin skin, IGameMenuHost host, ETab[] tabs, bool dimBehind)
     {
@@ -238,6 +238,12 @@ public sealed class GameMenu
         this.tabs = tabs;
         this.dimBehind = dimBehind;
     }
+
+    // A is read on its release, and a menu opened with A pressed - Setup and Journey Onward on the
+    // title screen, which act on the press - would take the release of that same press for a choice:
+    // the first row of OPTIONS toggled, or the newest save loaded. Until A has been up once since the
+    // menu opened, its release is not a choice.
+    private bool padAcceptArmed = true;
 
     public ETab Tab => tabs[tabIndex];
 
@@ -254,6 +260,7 @@ public sealed class GameMenu
         selectHeld = 0f;
         selectFired = false;
         lastMouse = GuiInput.MousePositionGuiSpace;
+        padAcceptArmed = !(Gamepad.current?.aButton.isPressed ?? false);
         int i = Array.IndexOf(tabs, tab);
         ShowTab(i >= 0 ? i : 0);
     }
@@ -525,11 +532,12 @@ public sealed class GameMenu
                 || (keys?.leftArrowKey.wasPressedThisFrame ?? false),
             Right = (pad?.dpad.right.wasPressedThisFrame ?? false) || (pad?.leftStick.right.wasPressedThisFrame ?? false)
                 || (keys?.rightArrowKey.wasPressedThisFrame ?? false),
-            Accept = (pad?.aButton.wasReleasedThisFrame ?? false)
+            Accept = (padAcceptArmed && (pad?.aButton.wasReleasedThisFrame ?? false))
                 || (keys?.enterKey.wasPressedThisFrame ?? false) || (keys?.numpadEnterKey.wasPressedThisFrame ?? false),
         };
         float wheel = Mouse.current?.scroll.ReadValue().y ?? 0f;
         nav.Wheel = wheel > 0f ? -1 : wheel < 0f ? 1 : 0;
+        padAcceptArmed |= !(pad?.aButton.isPressed ?? false);
 
         bool back = (pad?.bButton.wasPressedThisFrame ?? false) || GameInput.EscapePressedThisFrame();
 
