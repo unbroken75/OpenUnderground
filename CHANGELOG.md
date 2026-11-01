@@ -10,6 +10,8 @@
 
 - The game menu's Controls tab now draws the keyboard and the gamepad with what every key and button does, the pad a page for each part of the game - walking, the inventory, the magic panel, the map and the menus - and the right stick's look speed can be set. F1, or holding Start on the pad, opens the menu straight on them.
 
+- With a PlayStation pad the game shows its buttons - the cross, circle, square and triangle, L1, R1, L2, R2, Options and Share - in every prompt and on the controls map, which also draws that pad with its d-pad above the left stick. A Button prompts row can also set Xbox or PlayStation by hand.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
