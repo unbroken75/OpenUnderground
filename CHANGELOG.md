@@ -8,6 +8,8 @@
 
 - Three more of the remake's additions can be turned off in the game menu's GAMEPLAY section, for the original's way: the automatic Search, Traps and Track reports, sprinting with its stamina gauge, and the items hidden in piles of debris, which are then only scenery. The music now pauses five to ten seconds between exploring tracks unless set otherwise, and the pause can be set up to five minutes. Saves, autosaves included, can be deleted from the game menu's Save and Load tabs, and Journey Onward on the title screen opens the same list of saves.
 
+- The game menu's Controls tab now draws the keyboard and the gamepad with what every key and button does, the pad a page for each part of the game - walking, the inventory, the magic panel, the map and the menus - and the right stick's look speed can be set. F1, or holding Start on the pad, opens the menu straight on them.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
