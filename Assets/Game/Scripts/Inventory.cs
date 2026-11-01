@@ -5975,12 +5975,12 @@ public class Inventory : MonoBehaviour
                             string lookText = currentItem.GetLookText();
                             if (!string.IsNullOrEmpty(lookText) && !hideLightSourceHintDuringTrade)
                             {
-                                DrawTex(x + 80, y + 48, 24, 24, aButton);
+                                DrawTex(x + 80, y + 48, 24, 24, PadGlyphs.Face(aButton));
                                 GUI.Label(UiScale.R(x + 110, y + 48, 100, 20), lookText, UiScale.Style(descriptionStyle));
                             }
                             if (Conversations.runningConversation == null)
                             {
-                                DrawTex(x + 40, y + 24, 24, 24, xButton);
+                                DrawTex(x + 40, y + 24, 24, 24, PadGlyphs.Face(xButton));
                                 DrawXButtonChargeRingOverlay(new Rect(x + 40, y + 24, 24, 24));
                                 UUObject throwHintItem = GetCurrentItem();
                                 if (throwHintItem.IsRepairable() && UUObject.FindAnvil())
@@ -6002,7 +6002,7 @@ public class Inventory : MonoBehaviour
                             }
                             if (TryGetStuffSecondaryUseHint(GetCurrentItem(), hoverPaperdoll: false, out string useText))
                             {
-                                DrawTex(x + 80, y, 24, 24, yButton);
+                                DrawTex(x + 80, y, 24, 24, PadGlyphs.Face(yButton));
                                 if (Conversations.runningConversation == null)
                                 {
                                     DrawYButtonUseChargeRingOverlay(new Rect(x + 80, y, 24, 24));
@@ -6012,7 +6012,7 @@ public class Inventory : MonoBehaviour
                         }
                         if (stack.Count > 0)
                         {
-                            DrawTex(x + 120, y + 24, 24, 24, bButton);
+                            DrawTex(x + 120, y + 24, 24, 24, PadGlyphs.Face(bButton));
                             GUI.Label(UiScale.R(x + 150, y + 24, 100, 20), "Close", UiScale.Style(descriptionStyle));
                         }
                     }
@@ -6043,12 +6043,12 @@ public class Inventory : MonoBehaviour
                             string lookText = pdObj.GetLookText();
                             if (!string.IsNullOrEmpty(lookText))
                             {
-                                DrawTex(x + 80, y + 48, 24, 24, aButton);
+                                DrawTex(x + 80, y + 48, 24, 24, PadGlyphs.Face(aButton));
                                 GUI.Label(UiScale.R(x + 110, y + 48, 100, 20), lookText, UiScale.Style(descriptionStyle));
                             }
                         }
 
-                        DrawTex(x + 80, y, 24, 24, yButton);
+                        DrawTex(x + 80, y, 24, 24, PadGlyphs.Face(yButton));
                         GUI.Label(UiScale.R(x + 110, y, 100, 20), "Unequip", UiScale.Style(descriptionStyle));
                     }
                 }
