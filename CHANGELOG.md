@@ -12,6 +12,8 @@
 
 - With a PlayStation pad the game shows its buttons - the cross, circle, square and triangle, L1, R1, L2, R2, Options and Share - in every prompt and on the controls map, which also draws that pad with its d-pad above the left stick. A Button prompts row can also set Xbox or PlayStation by hand.
 
+- The pad's short rumble when you run at a ledge, a warning before the edge, is now explained on the pad's controls map, and a Ledge rumble row turns it off, leaving the other rumbles alone.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
