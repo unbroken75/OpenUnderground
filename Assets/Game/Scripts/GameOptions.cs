@@ -11,7 +11,7 @@ public enum EOptionSection
     Audio,
     General,
     Input,
-    /// <summary>The keyboard's map: no rows, drawn by ControlsMap.</summary>
+    /// <summary>The keyboard's map: no rows, drawn by ControlsMap, where its keys are rebound (GameBindings).</summary>
     Keyboard,
     /// <summary>The pad's map, one page per context: no rows, drawn by ControlsMap.</summary>
     Gamepad,
@@ -191,7 +191,7 @@ public static class GameOptions
             "How the pad's buttons are shown: A, B, X, Y, LB, RB, LT, RT, Start and Select, or the PlayStation's cross, circle, square, triangle, L1, R1, L2, R2, Options and Share.\n<b>Automatic:</b> the PlayStation's while a PlayStation pad is connected.",
             EOptionKind.Choice, 0f, choices: PadGlyphs.StyleNames),
         new(EOptionSection.Input, "Options_AutoJump", "Automatic jumping",
-            "<b>Enabled:</b> you jump by yourself at the edge when running straight at a gap or a deep drop. To step off a ledge instead, hold A or D as well, or push the stick only partway.",
+            "<b>Enabled:</b> you jump by yourself at the edge when running straight at a gap or a deep drop. To step off a ledge instead, hold a sideways key as well, or push the stick only partway.",
             EOptionKind.Toggle, 0f),
         new(EOptionSection.Input, "Options_LedgeRumble", "Ledge rumble",
             "<b>Enabled:</b> the pad gives a short rumble when you run at a ledge, a moment before the edge: jump, or stop. The pad's other rumbles, for blows, doors and shrines, stay on either way.",
@@ -398,9 +398,10 @@ public static class GameOptions
         }
     }
 
-    /// <summary>Every row of these sections back to its default.</summary>
+    /// <summary>Every row of these sections back to its default, and the bindings of the two maps among them.</summary>
     public static void ResetSections(params EOptionSection[] sections)
     {
+        GameBindings.Reset(sections);
         foreach (GameOption o in All)
         {
             if (Array.IndexOf(sections, o.Section) >= 0)
@@ -451,9 +452,13 @@ public static class GameOptions
         return false;
     }
 
-    /// <summary>True when some row of these sections is away from its default.</summary>
+    /// <summary>True when some row of these sections is away from its default, or a binding of the two maps among them.</summary>
     public static bool AnyChangedFromDefault(params EOptionSection[] sections)
     {
+        if (GameBindings.AnyChanged(sections))
+        {
+            return true;
+        }
         foreach (GameOption o in All)
         {
             if (Array.IndexOf(sections, o.Section) >= 0 && !IsDefault(o))
@@ -469,6 +474,7 @@ public static class GameOptions
     {
         private readonly Dictionary<GameOption, float> numbers = new Dictionary<GameOption, float>();
         private readonly string soundFont;
+        private readonly GameBindings.Snapshot bindings = new GameBindings.Snapshot();
 
         public Snapshot()
         {
@@ -491,7 +497,7 @@ public static class GameOptions
                     return true;
                 }
             }
-            return CurrentSoundFont != soundFont;
+            return CurrentSoundFont != soundFont || bindings.Differs();
         }
 
         public void Restore()
@@ -504,6 +510,7 @@ public static class GameOptions
             {
                 SetSoundFont(soundFont);
             }
+            bindings.Restore();
         }
     }
 
@@ -538,6 +545,7 @@ public static class GameOptions
             soundFontAppliesAt = 0f;
             Tick();
         }
+        GameBindings.Save();
         PlayerPrefs.Save();
     }
 }

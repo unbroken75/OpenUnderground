@@ -333,7 +333,7 @@ public class SaveLoadGUI : MonoBehaviour, IGameMenuHost
         }
 
         Gamepad gp = Gamepad.current;
-        if (gp == null || Menu.Asking)
+        if (gp == null || Menu.Asking || Menu.PadHoldsPaused)
         {
             quitHoldXTime = 0f;
             return;
