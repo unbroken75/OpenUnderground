@@ -2331,6 +2331,8 @@ public class Inventory : MonoBehaviour
     protected void Start()
     {
         sInv = this;
+        // the face pictures a rebound action's hint is drawn with (PadGlyphs.DrawBound)
+        PadGlyphs.Remember(aButton, bButton, xButton, yButton);
         if (GetComponent<SoftwareCursorOverlay>() == null)
             gameObject.AddComponent<SoftwareCursorOverlay>();
 
@@ -4197,7 +4199,9 @@ public class Inventory : MonoBehaviour
         if (holdTime > 0.0f)
             holdTime -= Time.unscaledDeltaTime;
 
-        if (exploringInventory && currentArea == EInventoryArea.Stuff && Conversations.runningConversation == null)
+        // not under the pack's own how-many box and yes/no question, which take the pad's buttons (fix 459)
+        if (exploringInventory && currentArea == EInventoryArea.Stuff && Conversations.runningConversation == null
+            && !IsInventoryModalUiBlocking(PlayerObject.Player))
         {
             if (GameActions.PadInventory.Throw.WasPressedThisFrame())
             {
@@ -5975,12 +5979,12 @@ public class Inventory : MonoBehaviour
                             string lookText = currentItem.GetLookText();
                             if (!string.IsNullOrEmpty(lookText) && !hideLightSourceHintDuringTrade)
                             {
-                                DrawTex(x + 80, y + 48, 24, 24, PadGlyphs.Face(aButton));
+                                PadGlyphs.DrawBound(UiScale.R(x + 80, y + 48, 24, 24), GameActions.PadInventory.Select);
                                 GUI.Label(UiScale.R(x + 110, y + 48, 100, 20), lookText, UiScale.Style(descriptionStyle));
                             }
                             if (Conversations.runningConversation == null)
                             {
-                                DrawTex(x + 40, y + 24, 24, 24, PadGlyphs.Face(xButton));
+                                PadGlyphs.DrawBound(UiScale.R(x + 40, y + 24, 24, 24), GameActions.PadInventory.Throw);
                                 DrawXButtonChargeRingOverlay(new Rect(x + 40, y + 24, 24, 24));
                                 UUObject throwHintItem = GetCurrentItem();
                                 if (throwHintItem.IsRepairable() && UUObject.FindAnvil())
@@ -6002,7 +6006,7 @@ public class Inventory : MonoBehaviour
                             }
                             if (TryGetStuffSecondaryUseHint(GetCurrentItem(), hoverPaperdoll: false, out string useText))
                             {
-                                DrawTex(x + 80, y, 24, 24, PadGlyphs.Face(yButton));
+                                PadGlyphs.DrawBound(UiScale.R(x + 80, y, 24, 24), GameActions.PadInventory.SecondaryUse);
                                 if (Conversations.runningConversation == null)
                                 {
                                     DrawYButtonUseChargeRingOverlay(new Rect(x + 80, y, 24, 24));
@@ -6012,7 +6016,7 @@ public class Inventory : MonoBehaviour
                         }
                         if (stack.Count > 0)
                         {
-                            DrawTex(x + 120, y + 24, 24, 24, PadGlyphs.Face(bButton));
+                            PadGlyphs.DrawBound(UiScale.R(x + 120, y + 24, 24, 24), GameActions.PadInventory.Back);
                             GUI.Label(UiScale.R(x + 150, y + 24, 100, 20), "Close", UiScale.Style(descriptionStyle));
                         }
                     }
@@ -6043,12 +6047,12 @@ public class Inventory : MonoBehaviour
                             string lookText = pdObj.GetLookText();
                             if (!string.IsNullOrEmpty(lookText))
                             {
-                                DrawTex(x + 80, y + 48, 24, 24, PadGlyphs.Face(aButton));
+                                PadGlyphs.DrawBound(UiScale.R(x + 80, y + 48, 24, 24), GameActions.PadInventory.Select);
                                 GUI.Label(UiScale.R(x + 110, y + 48, 100, 20), lookText, UiScale.Style(descriptionStyle));
                             }
                         }
 
-                        DrawTex(x + 80, y, 24, 24, PadGlyphs.Face(yButton));
+                        PadGlyphs.DrawBound(UiScale.R(x + 80, y, 24, 24), GameActions.PadInventory.SecondaryUse);
                         GUI.Label(UiScale.R(x + 110, y, 100, 20), "Unequip", UiScale.Style(descriptionStyle));
                     }
                 }
