@@ -2,6 +2,8 @@
 
 ## Current release
 
+- F9, or right on the D-pad, uses the Track skill at once, as in the original: it tells you of the creatures within eight tiles and in which direction, or that there are none. Track still reports by itself every few seconds as well.
+
 - The interface now follows the size of the screen: it keeps its size from 1366x768 to 1920x1080, grows evenly on larger screens with the edges of its pixel art softened, and shrinks as a whole on smaller ones such as a Steam Deck, where panels used to overlap; below 1280x720 a message says so once. Conversations fit a 768-line screen, and the list of saves on the title screen is wider and cuts long names short.
 
 - The save and options panel is now a full-screen game menu with four tabs, Save, Load, Options and Controls, its options grouped in sections and applied as soon as they change, with Reset, Reset all and Undo changes in place of Apply All. Settings that could only be changed in the registry now have a row - autosave, the music over the map, the silence between tracks, the scale of the interface above 1080p, and the remake's gameplay additions, which the Classic rules button turns back to the original's way. The title screen's Setup opens the same menu, and the music tracks are a page of it, now reachable in a game too.
