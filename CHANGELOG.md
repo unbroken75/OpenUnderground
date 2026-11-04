@@ -2,6 +2,8 @@
 
 ## Current release
 
+- A new Classic keys button on the game menu's Controls page sets the keyboard to the original's: W to run and S to walk forward, A and D to turn, Z and C to step aside, X to step back, E and Q to fly up and down, 1, 2 and 3 to look down, ahead and up, F7 for the inventory and the stats, J to jump and Shift-J for the standing long jump. In the usual layout T and G fly up and down, Shift+Space is the standing long jump and F7 opens the inventory, then the stats; any key can now be cleared with Delete, and a right click on the rune bag opens the magic panel.
+
 - F9, or right on the D-pad, uses the Track skill at once, as in the original: it tells you of the creatures within eight tiles and in which direction, or that there are none. Track still reports by itself every few seconds as well.
 
 - The interface now follows the size of the screen: it keeps its size from 1366x768 to 1920x1080, grows evenly on larger screens with the edges of its pixel art softened, and shrinks as a whole on smaller ones such as a Steam Deck, where panels used to overlap; below 1280x720 a message says so once. Conversations fit a 768-line screen, and the list of saves on the title screen is wider and cuts long names short.
