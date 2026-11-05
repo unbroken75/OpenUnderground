@@ -1075,7 +1075,8 @@ public class WeaponBase : UUObject
             col.enabled = false;
         }
 
-        transform.SetParent(PlayerObject.Player.mainCamera.transform, false);
+        // under the camera's WeaponView, which keeps the weapon's picture whatever the Field of view row sets
+        transform.SetParent(PlayerObject.Player.WeaponView, false);
         position = positions[0];
         rotation = rotations[0];
         
