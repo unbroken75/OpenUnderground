@@ -2,6 +2,8 @@
 
 ## Current release
 
+- The cudgel and the three maces are held lower while you charge a blow, so the head of the maces no longer runs off the top of the screen.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
