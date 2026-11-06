@@ -135,8 +135,7 @@ public class MusicSetupPage : IGameMenuSubPage
         bool down = (pad?.dpad.down.wasPressedThisFrame ?? false) || (keyboard?.downArrowKey.wasPressedThisFrame ?? false);
         bool left = (pad?.dpad.left.wasPressedThisFrame ?? false) || (keyboard?.leftArrowKey.wasPressedThisFrame ?? false);
         bool right = (pad?.dpad.right.wasPressedThisFrame ?? false) || (keyboard?.rightArrowKey.wasPressedThisFrame ?? false);
-        bool accept = (pad?.aButton.wasPressedThisFrame ?? false)
-            || (keyboard?.enterKey.wasPressedThisFrame ?? false) || (keyboard?.numpadEnterKey.wasPressedThisFrame ?? false);
+        bool accept = (pad?.aButton.wasPressedThisFrame ?? false) || GameInput.EnterPressedThisFrame();
         bool soundFontKey = (pad?.rightShoulder.wasPressedThisFrame ?? false) || (keyboard?.sKey.wasPressedThisFrame ?? false);
 
         if (soundFontListOpen)
