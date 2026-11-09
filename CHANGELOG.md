@@ -38,6 +38,8 @@
 
 - On the pad, holding up in the inventory stops at the top row instead of running on into the body slots, and an item picked up with A to move it stays picked up when you go up to the body slots and back.
 
+- The arrow keys walk with the inventory or the magic panel open, as W, A, S and D do, instead of moving a selection there that could not be seen.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
