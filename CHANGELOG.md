@@ -36,6 +36,8 @@
 
 - The pad's short rumble when you run at a ledge, a warning before the edge, is now explained on the pad's controls map, and a Ledge rumble row turns it off, leaving the other rumbles alone.
 
+- On the pad, holding up in the inventory stops at the top row instead of running on into the body slots, and an item picked up with A to move it stays picked up when you go up to the body slots and back.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
