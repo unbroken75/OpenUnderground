@@ -40,6 +40,8 @@
 
 - The arrow keys walk with the inventory or the magic panel open, as W, A, S and D do, instead of moving a selection there that could not be seen.
 
+- On the pad, a wand used from the inventory with Y now waits, ready, and the attack trigger fires it at the crosshair while the right stick aims, a wand of missiles shot after shot until B puts it away; before, each shot was a held Y with the thumb off the stick. Name Enchantment and its wand can now name an item picked with A in the inventory, which on the pad worked only on things lying in the world.
+
 ## Release UUBuild2Nov2026.zip
 
 - The three buttons by the stairs on level 3 work as in the original: the right order opens the door beside them, and a wrong press brings a skeleton at the far end of the room, as many times as it is made.
