@@ -2388,6 +2388,7 @@ public class Inventory : MonoBehaviour
     /// up: the held cast button would otherwise be a held Throw here, and throw the selected item when let go.
     /// </summary>
     private bool padButtonsDownWhenOpened;
+    private bool wasExploringInventory;
 
     /// <summary>The pack is opening with pad buttons that may be down: they act only once they are let go.</summary>
     public void IgnorePadButtonsHeldNow()
@@ -4156,6 +4157,18 @@ public class Inventory : MonoBehaviour
 
         PlayerObject.DisableControls(EControlMask.Inventory, exploringInventory);
 
+        // the pack getting the pad back - opened, or the map over it gone - with one of its buttons down or let go this
+        // frame: that press belonged to what was before, and was taken for a tap or a hold to pick up (fix 469)
+        GameActions.PadInventoryActions padKeys = GameActions.PadInventory;
+        if (exploringInventory && !wasExploringInventory
+            && (padKeys.Select.IsPressed() || padKeys.SecondaryUse.IsPressed() || padKeys.Throw.IsPressed() || padKeys.Back.IsPressed()
+                || padKeys.Select.WasReleasedThisFrame() || padKeys.SecondaryUse.WasReleasedThisFrame()
+                || padKeys.Throw.WasReleasedThisFrame() || padKeys.Back.WasReleasedThisFrame()))
+        {
+            padButtonsDownWhenOpened = true;
+        }
+        wasExploringInventory = exploringInventory;
+
         bool padButtonsHeldFromBefore = PadButtonsStillDownSinceOpened();
 
         if (exploringInventory)
@@ -4391,7 +4404,8 @@ public class Inventory : MonoBehaviour
         float lerpTarget = (holdTime > 0.0f ? 1.0f : 0.0f);
         lerpIn = Utils.DampedApproachUnscaledTime(lerpIn, lerpTarget, 0.2f);
 
-        aPressedTime = GameActions.PadInventory.Select.IsPressed() && !padButtonsHeldFromBefore
+        // counted only while the pack has the pad: A held on the map or a rune came back as a hold to pick up (fix 469)
+        aPressedTime = exploringInventory && GameActions.PadInventory.Select.IsPressed() && !padButtonsHeldFromBefore
             ? aPressedTime + Time.unscaledDeltaTime : 0.0f;
     }
 
