@@ -21,7 +21,7 @@ This project is a wrapper for the well-known 1992 dungeon crawler by Blue Sky Pr
   - every key and pad button can be changed, with a Classic keys preset for the original's layout; the Controls tab draws the keyboard and the pad with what each key and button does
   - autosave at the beginning of each Abyss level and five quicksave slots, rolling in BG3 style
   - achievements
-  - sprinting, bound to the Acrobat skill (be warned: dashing through the level can make you miss secret details)
+  - sprinting, bound to the Acrobat skill
   - four ratings on the inventory panel: attack and damage by the weapon hand, defence and armour by the shield hand
   - clearer attack feedback: the charge cursor stays dark until a release would actually land a swing, then lights up and fills
   - every few seconds the Search skill looks for you, and points out possible secrets and trapped objects in front of you

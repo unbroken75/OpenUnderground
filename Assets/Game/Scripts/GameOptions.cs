@@ -216,7 +216,7 @@ public static class GameOptions
             EOptionKind.Toggle, 1f,
             original: "the three spells do nothing.", originalValue: 0f),
         new(EOptionSection.Gameplay, "Options_Sprint", "Sprinting",
-            "<b>Enabled:</b> you can sprint for a few seconds, longer with more Acrobat, and a gauge beside the rune shelf shows how much is left.\nBe warned: dashing through the level can make you miss secret details.",
+            "<b>Enabled:</b> you can sprint for a few seconds, longer with more Acrobat, and a gauge beside the rune shelf shows how much is left.",
             EOptionKind.Toggle, 1f,
             original: "there is no sprint.", originalValue: 0f),
 
